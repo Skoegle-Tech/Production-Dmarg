@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    restart: always
+    # Remove container_name as it prevents scaling
+    # Remove static port mapping that would cause conflicts
+    expose:
+      - "13000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+    deploy:
+      replicas: 3  # Number of instances you want
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - app
+    networks:
+      - app-network
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
