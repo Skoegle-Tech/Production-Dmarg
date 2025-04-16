@@ -29,7 +29,8 @@ const allowedOrigins = [
   "https://dmarg.onrender.com",
   "http://localhost:13000",
   "https://deploymentimage.onrender.com",
-  ""
+  "https://test.skoegle.com",
+  "http://3.110.177.113"
 ];
 
 // Dynamically allow all localhost origins
