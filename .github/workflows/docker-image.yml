@@ -19,14 +19,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Build Docker image
-      #   run: docker build -t deploymentimage .
+      - name: Build Docker image
+        run: docker build -t deploymentimage .
 
-      # - name: Tag Docker image
-      #   run: docker tag deploymentimage manoj20002/deploymentimage:latest
+      - name: Tag Docker image
+        run: docker tag deploymentimage manoj20002/deploymentimage:latest
 
-      # - name: Push Docker image
-      #   run: docker push manoj20002/deploymentimage:latest
+      - name: Push Docker image
+        run: docker push manoj20002/deploymentimage:latest
 
       - name: Pull latest Docker image
         run: docker pull manoj20002/deploymentimage:latest
