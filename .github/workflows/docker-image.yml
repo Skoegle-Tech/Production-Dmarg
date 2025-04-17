@@ -29,13 +29,15 @@ jobs:
       #   run: docker push manoj20002/deploymentimage:latest
 
       - name: Pull latest Docker image
-        run: docker compose pull
+        run: docker pull manoj20002/deploymentimage:latest
 
       - name: Generate Nginx config and reload
-        env:
-          REPLICAS: ${{ github.event.inputs.replicas || '5' }}
+        shell: bash
         run: |
-          echo "Updating Nginx for $REPLICAS replicas"
+          REPLICAS="${{ github.event.inputs.replicas }}"
+          if [ -z "$REPLICAS" ]; then
+            REPLICAS=5
+          fi
 
           CONFIG_FILE="/etc/nginx/sites-available/api-skoegle-config"
 
@@ -46,37 +48,40 @@ jobs:
           done
           echo "}" >> $CONFIG_FILE
 
-          cat <<EOF >> $CONFIG_FILE
+          cat <<'EOF' >> $CONFIG_FILE
 
-server {
-    listen 80;
-    listen [::]:80;
+          server {
+                listen 80;
+                listen [::]:80;
 
-    server_name _;
+                server_name _;
 
-    location / {
-        proxy_pass http://backend;
+                   location / {
+                         proxy_pass http://backend;
+                         proxy_http_version 1.1;
+                         proxy_set_header Upgrade $http_upgrade;
+                         proxy_set_header Connection 'upgrade';
+                         proxy_set_header Host $host;
+                          proxy_cache_bypass $http_upgrade;
 
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade \$http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host \$host;
-        proxy_cache_bypass \$http_upgrade;
-
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-}
-EOF
+                          proxy_set_header X-Real-IP $remote_addr;
+                          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                           proxy_set_header X-Forwarded-Proto $scheme;
+                          }
+                       }
+            EOF
 
           echo "Reloading Nginx..."
           sudo systemctl reload nginx
 
       - name: Restart Docker containers
-        env:
-          REPLICAS: ${{ github.event.inputs.replicas || '5' }}
+        shell: bash
         run: |
+          REPLICAS="${{ github.event.inputs.replicas }}"
+          if [ -z "$REPLICAS" ]; then
+            REPLICAS=5
+          fi
+
           echo "Stopping old containers..."
           docker ps -q --filter "ancestor=manoj20002/deploymentimage:latest" | xargs -r docker stop
           docker ps -aq --filter "ancestor=manoj20002/deploymentimage:latest" | xargs -r docker rm
@@ -86,5 +91,3 @@ EOF
             PORT=$((13000 + i))
             docker run -d -p ${PORT}:3000 --name app_$i manoj20002/deploymentimage:latest
           done
-
-          echo "Deployment complete."
