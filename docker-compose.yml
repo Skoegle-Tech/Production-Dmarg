@@ -5,4 +5,4 @@ services:
     image: manoj20002/deploymentimage:latest
     restart: always
     ports:
-      - "13001-13010:13000"
+      - "13001-13010:3000"
