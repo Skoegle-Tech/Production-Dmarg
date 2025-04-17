@@ -90,5 +90,5 @@ jobs:
           echo "Spinning up $REPLICAS new containers..."
           for i in $(seq 1 $REPLICAS); do
             PORT=$((13000 + i))
-            docker run -d -p ${PORT}:3000 --name app_$i manoj20002/deploymentimage:latest
+            docker run -d -p ${PORT}:13000 --name app_$i manoj20002/deploymentimage:latest
           done
