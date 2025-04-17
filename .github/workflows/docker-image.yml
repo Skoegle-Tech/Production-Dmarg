@@ -6,7 +6,7 @@ on:
       replicas:
         description: 'Number of replicas to run'
         required: false
-        default: '5'
+        default: '8'
 
   push:
     branches: [ "main" ]
