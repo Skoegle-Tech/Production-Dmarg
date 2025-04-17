@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    image: manoj20002/deploymentimage:latest
+    restart: always
+    ports:
+      - "13001-13010:3000"
