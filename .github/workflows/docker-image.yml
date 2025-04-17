@@ -41,35 +41,36 @@ jobs:
 
           CONFIG_FILE="/etc/nginx/sites-available/api-skoegle-config"
 
-          echo "upstream backend {" > $CONFIG_FILE
+          echo "upstream backend {" | sudo tee $CONFIG_FILE
           for i in $(seq 1 $REPLICAS); do
             PORT=$((13000 + i))
-            echo "    server 127.0.0.1:$PORT;" >> $CONFIG_FILE
+            echo "    server 127.0.0.1:$PORT;" | sudo tee -a $CONFIG_FILE
           done
-          echo "}" >> $CONFIG_FILE
+          echo "}" | sudo tee -a $CONFIG_FILE
 
-          cat <<'EOF' >> $CONFIG_FILE
+          sudo tee -a $CONFIG_FILE > /dev/null <<'EOF'
 
-          server {
-                listen 80;
+              server {
+                   listen 80;
                 listen [::]:80;
 
-                server_name _;
+                  server_name _;
 
-                   location / {
-                         proxy_pass http://backend;
-                         proxy_http_version 1.1;
-                         proxy_set_header Upgrade $http_upgrade;
-                         proxy_set_header Connection 'upgrade';
-                         proxy_set_header Host $host;
-                          proxy_cache_bypass $http_upgrade;
+                     location / {
+                  proxy_pass http://backend;
 
-                          proxy_set_header X-Real-IP $remote_addr;
-                          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                           proxy_set_header X-Forwarded-Proto $scheme;
-                          }
-                       }
-            EOF
+                      proxy_http_version 1.1;
+                   proxy_set_header Upgrade $http_upgrade;
+                   proxy_set_header Connection 'upgrade';
+                    proxy_set_header Host $host;
+                   proxy_cache_bypass $http_upgrade;
+
+                   proxy_set_header X-Real-IP $remote_addr;
+                   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+               }
+          }
+           EOF
 
           echo "Reloading Nginx..."
           sudo systemctl reload nginx
