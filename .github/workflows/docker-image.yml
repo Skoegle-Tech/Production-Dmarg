@@ -75,6 +75,7 @@ jobs:
     
           
       - run : sudo systemctl reload nginx
+      - run: docker system prune -a --volumes -f
       - name: Restart Docker containers
         shell: bash
         run: |
