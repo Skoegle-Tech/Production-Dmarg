@@ -6,7 +6,7 @@ on:
       replicas:
         description: 'Number of replicas to run'
         required: false
-        default: '10'
+        default: '8'
 
   push:
     branches: [ "main" ]
@@ -36,7 +36,7 @@ jobs:
         run: |
           REPLICAS="${{ github.event.inputs.replicas }}"
           if [ -z "$REPLICAS" ]; then
-            REPLICAS=10
+            REPLICAS=8
           fi
 
           CONFIG_FILE="/etc/nginx/sites-available/api-skoegle-config"
@@ -80,7 +80,7 @@ jobs:
         run: |
           REPLICAS="${{ github.event.inputs.replicas }}"
           if [ -z "$REPLICAS" ]; then
-            REPLICAS=10
+            REPLICAS=8
           fi
 
           echo "Stopping old containers..."
