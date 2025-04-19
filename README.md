@@ -1,4 +1,3 @@
-```
 # Dmarg Production Mono Repo
 
 > 🚨 **Important:** This repository is maintained by **Manoj**.  
@@ -20,14 +19,6 @@ This is a **mono repo** that runs both **React (Frontend)** and **Node.js (Backe
 
 ### Structure Overview
 
-```
-/root-directory
-│
-├── /client       # React frontend
-├── /server       # Node.js backend
-├── package.json  # Shared dependencies and scripts
-└── README.md     # This file
-```
 
 ---
 
@@ -45,6 +36,3 @@ This is a **mono repo** that runs both **React (Frontend)** and **Node.js (Backe
 - Managed via NGINX and deployed on an Ubuntu EC2 instance.
 - Health check endpoint: `/ping`
 
----
-
-For any deployment-related tasks, issues, or updates, please contact **Manoj** directly.
