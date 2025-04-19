@@ -133,7 +133,7 @@ const LiveVideoPlayer = () => {
 // Updated `checkDeviceLiveStatus` to properly use `fromdate` and `todate`.
 const checkDeviceLiveStatus = async () => {
   setLiveStatus("Checking live status...");
-  const { formattedDate, currentTime, twoMinutesAgoTime } = getCurrentTimeInfo();
+  const { currentTime, twoMinutesAgoTime } = getCurrentTimeInfo();
 
 
   try {
@@ -165,7 +165,6 @@ const checkDeviceLiveStatus = async () => {
 // Function to fetch video data
 const fetchVideos = async () => {
   if (!selectedDevice) return;
-
   const { currentTime } = getCurrentTimeInfo();
 
   const filter = {
@@ -173,15 +172,15 @@ const fetchVideos = async () => {
     toDate: formattedDate,
     fromTime: fromTime,
     toTime: currentTime,
-    deviceCode: selectedDevice
+     selectedDevice
 
   };
 
   try {
     const response = await getFilteredVideos(filter);  // Ensure filter is passed correctly
 
-    if (response.data && response.data.length > 0) {
-      const sortedData = response.data.sort((a, b) => {
+    if (response && response.length > 0) {
+      const sortedData = response.sort((a, b) => {
         const timeA = new Date(`1970-01-01T${a.fromtime}Z`).getTime();
         const timeB = new Date(`1970-01-01T${b.fromtime}Z`).getTime();
         return timeA - timeB;
