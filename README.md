@@ -24,7 +24,7 @@ This is a **mono repo** that runs both **React (Frontend)** and **Node.js (Backe
 
 ## ⚙️ Production Rules
 
-- ✅ Only **Manoj** is authorized to make code changes.
+- ✅ Only maintainer  is authorized to make code changes.
 - 🚫 **Do not** commit, push, or merge code without permission.
 - 🛑 Unauthorized code changes can **spoil the production environment**.
 
