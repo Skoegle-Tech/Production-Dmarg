@@ -141,7 +141,7 @@ export default function Footer() {
             opacity: 0.7,
             fontSize: '0.875rem'
           }}>
-            <Link href="https://www.skoegle.in/privacypolicy.html" color="inherit" underline="hover" target="_blank">
+            <Link href="https://www.skoegle.in/privacysales.html" color="inherit" underline="hover" target="_blank">
               Privacy Policy
             </Link>
             <Link href="https://www.skoegle.in/Terms%20and%20Conditions.html" color="inherit" underline="hover" target="_blank">
