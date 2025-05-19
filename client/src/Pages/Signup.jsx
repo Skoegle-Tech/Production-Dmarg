@@ -759,7 +759,7 @@ export default function SignUp() {
   };
 
   return (
-    <Layout title={"Dmarg - Sign Up"}>
+    <Layout title={"Eyedra - Sign Up"}>
       <Container maxWidth="sm" sx={{ py: { xs: 2, sm: 4 } }}>
         <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <IconButton

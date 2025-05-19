@@ -511,7 +511,7 @@ const VideoPlayer = () => {
   );
 
   return (
-    <Layout title="Dmarg - Video Surveillance">
+    <Layout title="Eyedra - Video Surveillance">
       <Container maxWidth="xl" sx={{ py: 4 }}>
         <Typography variant="h4" component="h1" align="center" gutterBottom sx={{ 
           borderBottom: '2px solid #1976d2', 
@@ -562,8 +562,8 @@ const VideoPlayer = () => {
         ) : (
           // Normal view with devices
           <Grid container spacing={3}>
-            {/* Video Player Section - Left Side (8/12 width) */}
-            <Grid item xs={12} md={8}>
+            {/* Video Player Section - Left Side (6/12 width) */}
+            <Grid item xs={12} md={6}>
               <Paper 
                 elevation={3} 
                 sx={{ 
@@ -571,7 +571,8 @@ const VideoPlayer = () => {
                   overflow: 'hidden',
                   borderRadius: 2,
                   height: '100%',
-                  minHeight: 500,
+                  minHeight: 350,
+                  minWidth: 800,
                   display: 'flex',
                   flexDirection: 'column'
                 }}
@@ -644,7 +645,7 @@ const VideoPlayer = () => {
                         component="video"
                         ref={videoRef}
                         src={currentVideo?.url}
-                        sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                        sx={{ width: '100%', height: '100%', objectFit: 'contain',maxHeight:250,maxWidth:440,margin:"0 auto" }}
                         onEnded={handleVideoEnd}
                         autoPlay
                         onTimeUpdate={updateCurrentTime}
@@ -989,3 +990,4 @@ const VideoPlayer = () => {
 };
 
 export default VideoPlayer;
+

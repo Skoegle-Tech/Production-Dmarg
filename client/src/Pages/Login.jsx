@@ -332,7 +332,7 @@ export default function Login() {
   };
 
   return (
-    <Layout title="Dmarg - Login">
+    <Layout title="Eyedra - Login">
       <Container maxWidth="md" sx={{ py: { xs: 2, md: 8 } }}>
         <Fade in={clientInfoLoaded} timeout={600}>
           <Paper 

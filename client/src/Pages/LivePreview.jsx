@@ -393,7 +393,7 @@ const fetchVideos = async () => {
   );
 
   return (
-    <Layout title="Dmarg - Live Surveillance">
+    <Layout title="Eyedra - Live Surveillance">
       <Container maxWidth="xl" sx={{ py: 4 }}>
         <Typography variant="h4" component="h1" align="center" gutterBottom sx={{ 
           borderBottom: '2px solid #1976d2', 
@@ -501,83 +501,86 @@ const fetchVideos = async () => {
               </Box>
             ) : (
               <Paper 
-                elevation={3} 
-                sx={{ 
-                  borderRadius: 2, 
-                  overflow: 'hidden',
-                  bgcolor: '#000',
-                  mb: 2
-                }}
-              >
-                {isLive ? (
-                  <Box 
-                    sx={{ 
-                      position: 'relative', 
-                      width: '100%', 
-                      aspectRatio: '16/9'
-                    }}
-                    onMouseMove={handleMouseMove}
-                    onTouchStart={handleTouch}
-                    onMouseLeave={() => isPlaying && setShowControls(false)}
-                  >
-                    <Box 
-                      component="video"
-                      ref={videoRef}
-                      sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                      onClick={togglePlayPause}
-                      onEnded={handleVideoEnd}
-                      preload="auto"
-                      playsInline
-                    />
+    elevation={3} 
+    sx={{ 
+      borderRadius: 2, 
+      overflow: 'hidden',
+      bgcolor: '#000',
+      mb: 2,
+      maxWidth: 600,
+      width: '90vw',
+      mx: 'auto', // horizontally center
+    }}
+  >
+    {isLive ? (
+      <Box 
+        sx={{ 
+          position: 'relative',
+          width: '100%',
+          pt: '56.25%', // 16:9 aspect ratio
+          background: '#000',
+        }}
+        onMouseMove={handleMouseMove}
+        onTouchStart={handleTouch}
+        onMouseLeave={() => isPlaying && setShowControls(false)}
+      >
+        <Box 
+          component="video"
+          ref={videoRef}
+          sx={{ 
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            background: '#000'
+          }}
+          onClick={togglePlayPause}
+          onEnded={handleVideoEnd}
+          preload="auto"
+          playsInline
+        />
                     
-                    <Fade in={showControls}>
-                      <Box sx={{ 
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        p: isMobile ? 1.5 : 2,
-                        background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.7) 100%)',
-                      }}>
-                        <Box>
-                          {videoData[currentVideoIndex] && (
-                            <Typography 
-                              variant={isMobile ? "body2" : "body1"} 
-                              sx={{ 
-                                color: '#fff', 
-                                fontWeight: 'bold',
-                                textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
-                              }}
-                            >
-                              {videoData[currentVideoIndex].filename}
-                            </Typography>
-                          )}
-                        </Box>
-                        
-                        <Box sx={{ 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          justifyContent: 'space-between',
-                          width: '100%'
-                        }}>
-                          <IconButton 
-                            onClick={togglePlayPause}
-                            color="primary"
-                            sx={{ 
-                              bgcolor: 'rgba(0,0,0,0.5)',
-                              '&:hover': { bgcolor: 'rgba(0,0,0,0.7)' },
-                              color: '#fff',
-                              width: isMobile ? 48 : 40,
-                              height: isMobile ? 48 : 40
-                            }}
-                          >
-                            {isPlaying ? <Pause /> : <PlayArrow />}
-                          </IconButton>
-                          
+  <Fade in={showControls}>
+  <Box
+    sx={{
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      width: '100%',
+      zIndex: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      pb: 3, // Padding from bottom
+      pointerEvents: 'none', // overlay doesn't block video clicks
+    }}
+  >
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 2,
+        bgcolor: 'rgba(0,0,0,0.5)',
+        borderRadius: 2,
+        px: 3,
+        py: 1,
+        pointerEvents: 'auto', // buttons inside ARE clickable
+      }}
+    >
+      <IconButton
+        onClick={togglePlayPause}
+        color="primary"
+        sx={{
+          bgcolor: 'rgba(255,255,255,0.1)',
+          color: '#fff',
+          width: 48,
+          height: 48,
+        }}
+      >
+        {isPlaying ? <Pause sx={{ fontSize: 36 }} /> : <PlayArrow sx={{ fontSize: 36 }} />}
+      </IconButton>
                           {!isMobile && (
                             <Box sx={{ 
                               display: 'flex', 

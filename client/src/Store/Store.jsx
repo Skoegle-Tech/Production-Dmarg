@@ -5,7 +5,7 @@ import { fetchDevicesByCustomerId,GetRegisterdDevices,deleteDeviceByDeviceString
 import { addGeofencingDevice, deleteGeofencingDevice, getGeofencingData, getRealTimeData, updateGeofencingRadius } from "./Geofencing";
 import { addDevice, logRealtimeData } from "./Register";
 import { sendOtpByEmail,  sendOtpBySms, verifyOtp, sendCustomMessageByEmail,sendCustomMessageBySms  } from "./Smtp";
-import { getFilteredVideos, checkLiveStatus } from "./Dmarg";
+import { getFilteredVideos, checkLiveStatus } from "./eyedra";
 
 
 const StoreContext = createContext(null);

@@ -10,7 +10,7 @@ export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    document.title = "Dmarg Forgot Password";
+    document.title = "Eyedra Forgot Password";
   }, []);
 
 
@@ -60,7 +60,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <Layout title="Dmarg Forgot Password">       
+    <Layout title="Eyedra Forgot Password">       
     <Container maxWidth="sm">
         <Box
           sx={{

@@ -11,7 +11,7 @@ const BASE_URL = VITE_ENV === "local"
 export const getFilteredVideos = async (currentFilter) => {
   console.log("Current Filter:", currentFilter);
   try {
-    const response = await axios.get(`${BASE_URL}/dmarg/filtervidios`, {
+    const response = await axios.get(`${BASE_URL}/eyedra/filtervidios`, {
       params: {
         fromdate: currentFilter.fromDate,
         todate: currentFilter.fromDate,
@@ -30,7 +30,7 @@ export const getFilteredVideos = async (currentFilter) => {
 // Check live video status
 export const checkLiveStatus = async (formattedDate, twoMinutesAgoTime, currentTime, selectedDevice) => {
   try {
-    const response = await axios.get(`${BASE_URL}/dmarg/checklive`, {
+    const response = await axios.get(`${BASE_URL}/eyedra/checklive`, {
       params: {
         fromdate: formattedDate,
         todate: formattedDate,

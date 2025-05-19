@@ -707,7 +707,7 @@ export default function Live() {
 
   if (loading) {
     return (
-      <Layout title={"Dmarg - Live"}>
+      <Layout title={"Eyedra - Live"}>
         <Container maxWidth="xl" sx={{ py: 4 }}>
           <Box sx={{ 
             display: 'flex', 
@@ -796,7 +796,7 @@ export default function Live() {
     );
   }
   return (
-    <Layout title={"Dmarg - Live Tracking"}>
+    <Layout title={"Eyedra - Live Tracking"}>
       <Container maxWidth="xl" sx={{ py: { xs: 2, md: 4 } }}>
         <Fade in={!loading}>
           <Box sx={{ 

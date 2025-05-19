@@ -257,7 +257,7 @@ export default function Profile() {
 
   if (loading) {
     return (
-      <Layout title="Dmarg - Profile">
+      <Layout title="Eyedra - Profile">
         <Container maxWidth="md" sx={{ mt: 8, mb: 4 }}>
           <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
             <Grid container spacing={3}>
@@ -279,7 +279,7 @@ export default function Profile() {
   }
 
   return (
-    <Layout title="Dmarg - Profile">
+    <Layout title="Eyedra - Profile">
       <Container maxWidth="md" sx={{ mt: 8, mb: 4 }}>
         <Slide direction="down" in={!loading} timeout={500}>
           <Paper 

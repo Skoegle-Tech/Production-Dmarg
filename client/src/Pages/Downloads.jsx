@@ -562,7 +562,7 @@ export default function Downloads() {
   );
 
   return (
-    <Layout title="Dmarg - Video Downloads">
+    <Layout title="Eyedra - Video Downloads">
       <Container maxWidth="lg" sx={{ py: 3 }}>
         <Card sx={{ mb: 3, boxShadow: 2 }}>
           <CardContent>

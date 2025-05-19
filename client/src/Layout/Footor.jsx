@@ -40,7 +40,7 @@ export default function Footer() {
                   WebkitTextFillColor: 'transparent' 
                 }}
               >
-                D-MARG
+                EYEDRA
               </Typography>
               <Typography 
                 variant="subtitle2" 

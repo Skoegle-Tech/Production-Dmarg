@@ -36,7 +36,7 @@ export default function Resetpasswordpassword() {
   };
 
   return (
-    <Layout title= "Dmarg Reset Password">
+    <Layout title= "Eyedra Reset Password">
       <Container maxWidth="sm">
         <Box
           sx={{

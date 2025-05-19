@@ -28,7 +28,7 @@ export default function Layout({ children, title }) {
     return (
         <>
             <Helmet>
-                <title>{title ? title : "Dmarg"}</title>
+                <title>{title ? title : "Eyedra"}</title>
                 <meta name="description" content="Welcome to Skoegle, your go-to platform." />
             </Helmet>
             <Navbar />

@@ -40,7 +40,7 @@ export default function App() {
    
     {
       path: "/",
-      element: maintanince ? <Serverissue /> :<ProtectedRoute element={<LivePage/>} />,
+      element: maintanince ? <Serverissue /> :<ProtectedRoute element={<LivePreview />} />,
     },
     {
       path: "/signup",

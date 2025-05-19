@@ -223,7 +223,7 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <ListItem 
+            {/* <ListItem 
               button 
               component={Link} 
               to="/"
@@ -245,13 +245,13 @@ export default function Navbar() {
                 <LocationOn />
               </ListItemIcon>
               <ListItemText primary="Preview" />
-            </ListItem>
+            </ListItem> */}
             
             <ListItem 
               button 
               component={Link} 
-              to="/livepage"
-              selected={isActive('/livepage')}
+              to="/"
+              selected={isActive('/')}
               sx={{
                 borderRadius: '0 20px 20px 0',
                 mx: 1,
@@ -271,7 +271,7 @@ export default function Navbar() {
               <ListItemText primary="Live" />
             </ListItem>
             
-            <ListItem 
+            {/* <ListItem 
               button 
               component={Link} 
               to="/downloads"
@@ -293,7 +293,7 @@ export default function Navbar() {
                 <DownloadIcon />
               </ListItemIcon>
               <ListItemText primary="Downloads" />
-            </ListItem>
+            </ListItem> */}
 
             {isLogin && (
               <ListItem 
@@ -426,7 +426,7 @@ export default function Navbar() {
                 letterSpacing: 1
               }}
             >
-              D-MARG
+              Eyedra
             </Typography>
           </Box>
         </Box>
@@ -435,7 +435,7 @@ export default function Navbar() {
         <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1 }}>
           {isLogin ? (
             <>
-              <Button 
+              {/* <Button 
                 component={Link} 
                 to="/" 
                 variant={isActive('/') ? "contained" : "text"}
@@ -449,7 +449,7 @@ export default function Navbar() {
                 }}
               >
                 Preview
-              </Button>
+              </Button> */}
               <Button 
                 component={Link} 
                 to="/livepage" 
@@ -466,7 +466,7 @@ export default function Navbar() {
                 Live
               </Button>
 
-              <Button 
+              {/* <Button 
                 component={Link} 
                 to="/downloads" 
                 variant={isActive('/downloads') ? "contained" : "text"}
@@ -480,7 +480,7 @@ export default function Navbar() {
                 }}
               >
                 Downloads
-              </Button>
+              </Button> */}
 
               <Button 
                 component={Link} 
