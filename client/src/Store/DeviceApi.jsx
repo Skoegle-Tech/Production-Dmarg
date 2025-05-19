@@ -132,7 +132,7 @@ export const deleteRegesteredDevice = async (device) => {
 
   
   try {
-      const response = await axios.delete(`${BASE_URL}/api/dmarg/device/delete`,{
+      const response = await axios.delete(`${BASE_URL}/api/eyedra/device/delete`,{
      data :{
       deviceName:device
      },
